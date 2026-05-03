@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "267595925579",
+    "project_id": "nataedu-b4587",
+    "storage_bucket": "nataedu-b4587.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267595925579:android:cdb629f7ed969d1bac65ce",
+        "android_client_info": {
+          "package_name": "com.example.nataedu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDGOqP_SrOVsbESvgBzFXTUI33kWbBvXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267595925579:android:f1a72b6a3ca17a2bac65ce",
+        "android_client_info": {
+          "package_name": "com.nataedu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDGOqP_SrOVsbESvgBzFXTUI33kWbBvXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
