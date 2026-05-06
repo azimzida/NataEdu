@@ -8,7 +8,7 @@
     android:background="#F8F9FA"
     tools:context="com.nataedu.MainActivity">
 
-    <!-- Scrollable Content -->
+    <!-- Scrollable Contentt -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
