@@ -1,5 +1,6 @@
 package com.nataedu;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -23,14 +24,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
 
-        // ✅ WAJIB ADA
-        setContentView(R.layout.home_page);
+        // 1. Set layout ke Landing Page
+        setContentView(R.layout.landingpage);
 
-        // 1. Inisialisasi Firestore
+        // 2. Hubungkan tombol Get Started ke LoginRegisterActivity
+        Button btnGetStarted = findViewById(R.id.btnGetStarted);
+        if (btnGetStarted != null) {
+            btnGetStarted.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, LoginRegisterActivity.class);
+                startActivity(intent);
+            });
+        }
+
+        // --- Kode Firestore & UI Lama (Ditambahkan Null Check agar tidak crash) ---
+        
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        // 2. Tombol Firestore
-        Button btnTest = findViewById(R.id.btnTestFirestore);
+        Button btnTest = findViewById(R.id.btnTestFirestore); // ID ini ada di home_page.xml
 
         if (btnTest != null) {
             btnTest.setOnClickListener(v -> {
@@ -51,17 +60,19 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        // Klik profile
         if (findViewById(R.id.profileImage) != null) {
             findViewById(R.id.profileImage).setOnClickListener(v -> {
                 Toast.makeText(this, "Silakan klik tombol merah di atas untuk tes Firestore", Toast.LENGTH_SHORT).show();
             });
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        // Penanganan Window Insets (Null check pada ID 'main')
+        if (findViewById(R.id.main) != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                return insets;
+            });
+        }
     }
 }
