@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
     <!-- Background Image -->
     <ImageView
+        android:id="@+id/imgBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
+        android:src="@drawable/bg_landingpage"
+        android:contentDescription="Background image for landing page" />
 
-        android:layout_width="match_parent"
-
+    <!-- Logo Section -->
     <LinearLayout
+        android:id="@+id/logoLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="24dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,35 +30,60 @@
         <ImageView
             android:layout_width="32dp"
             android:layout_height="32dp"
+            android:src="@drawable/icon_logo"
+            android:contentDescription="Nata Edu Logo" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="Nata Edu"
+            android:textColor="@color/icon_purple"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/coolvetica_rg" />
     </LinearLayout>
 
+    <!-- Text Content -->
     <LinearLayout
+        android:id="@+id/textContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="24dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/btnGetStarted"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="32dp">
 
         <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ready to Start\nLearning with NataEdu!"
+            android:textColor="@android:color/white"
+            android:textSize="28sp"
             android:textStyle="bold"
             android:lineSpacingExtra="4dp" />
 
         <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="A mobile platform for effective and\ninteractive self-learning."
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/white"
+            android:text="A mobile platform for effective and\ninteractive self-learning." />
+    </LinearLayout>
 
+    <!-- Button -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnGetStarted"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_margin="24dp"
+        android:background="@android:color/white"
         android:text="Get Started >"
         android:textAllCaps="false"
+        android:textColor="@android:color/black"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
