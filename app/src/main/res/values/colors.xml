@@ -9,4 +9,6 @@
     <color name="bg_light">#F8F9FF</color>
     <color name="icon_purple">#6200EE</color>
     <color name="chip_bg">#F2F2F2</color>
+    <color name="input_bg">#FFCDD2</color>
+    <color name="text_edushare">#530D4E</color>
 </resources>
