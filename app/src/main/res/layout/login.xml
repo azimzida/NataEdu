@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".MainActivity">
+    android:fitsSystemWindows="true"
+    tools:context=".LoginActivity">
 
-    <!-- Header: Back Button and Title -->
     <ImageView
         android:id="@+id/btnBack"
         android:layout_width="32dp"
@@ -32,7 +32,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/btnBack" />
 
-    <!-- Input Section -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,25 +40,24 @@
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/tvLoginTitle">
 
-        <!-- Username -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Username"
+            android:text="Email"
             android:textColor="@color/brand_maroon"
             android:textSize="18sp" />
 
         <EditText
+            android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_input"
             android:paddingHorizontal="20dp"
-            android:inputType="text"
+            android:inputType="textEmailAddress"
             android:textColor="@color/brand_maroon" />
 
-        <!-- Password -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,6 +68,7 @@
             android:textSize="18sp" />
 
         <EditText
+            android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="8dp"
@@ -78,7 +77,6 @@
             android:inputType="textPassword"
             android:textColor="@color/brand_maroon" />
 
-        <!-- Login Button -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnLoginSubmit"
             android:layout_width="match_parent"
@@ -92,7 +90,6 @@
             android:textStyle="bold"
             android:elevation="4dp" />
 
-        <!-- Footer Text -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -115,5 +112,4 @@
             android:textStyle="bold" />
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

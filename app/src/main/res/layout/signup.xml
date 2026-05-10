@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".MainActivity">
+    android:fitsSystemWindows="true"
+    tools:context=".SignUpActivity">
 
     <!-- Header: Back Button and Title -->
     <ImageView
@@ -52,15 +53,14 @@
             android:textSize="18sp" />
 
         <EditText
+            android:id="@+id/etSignupUsername"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_input"
             android:inputType="text"
             android:paddingHorizontal="20dp"
-            android:textColor="@color/brand_maroon"
-            android:importantForAutofill="no"
-            tools:ignore="LabelFor" />
+            android:textColor="@color/brand_maroon" />
 
         <!-- Email -->
         <TextView
@@ -73,15 +73,14 @@
             android:textSize="18sp" />
 
         <EditText
+            android:id="@+id/etSignupEmail"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_input"
             android:inputType="textEmailAddress"
             android:paddingHorizontal="20dp"
-            android:textColor="@color/brand_maroon"
-            android:importantForAutofill="no"
-            tools:ignore="LabelFor" />
+            android:textColor="@color/brand_maroon" />
 
         <!-- Password -->
         <TextView
@@ -94,15 +93,14 @@
             android:textSize="18sp" />
 
         <EditText
+            android:id="@+id/etSignupPassword"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_input"
             android:inputType="textPassword"
             android:paddingHorizontal="20dp"
-            android:textColor="@color/brand_maroon"
-            android:importantForAutofill="no"
-            tools:ignore="LabelFor" />
+            android:textColor="@color/brand_maroon" />
 
         <!-- Sign Up Button -->
         <androidx.appcompat.widget.AppCompatButton

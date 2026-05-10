@@ -8,56 +8,55 @@
     android:background="#000000"
     tools:context=".LoginRegisterActivity">
 
-    <!-- Background Image -->
+    <!-- Background Image - Pastikan scaleType sama dengan Landing Page -->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/bg_landing"
-        android:alpha="0.6" /> <!-- Sedikit digelapkan agar teks lebih kontras -->
+        android:src="@drawable/bg_landing" />
 
-    <!-- Gradient Overlay (Menutup bagian bawah agar tombol menonjol) -->
+    <!-- Gradient Overlay - Dibuat lebih fleksibel -->
     <View
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="0dp"
         android:background="@drawable/bg_gradient_bottom"
+        app:layout_constraintHeight_percent="0.6"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <!-- Top Logo & Title -->
-    <!-- PERBAIKAN: Hilangkan layout_marginTop agar diatur oleh Padding System di Java -->
     <LinearLayout
         android:id="@+id/layout_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/icon_logo" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="10dp"
             android:fontFamily="@font/coolvetica_rg"
             android:text="Nata Edu"
-            android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textColor="@color/text_edushare"
+            android:textSize="22sp"
             android:textStyle="bold" />
     </LinearLayout>
 
-    <!-- Bottom Buttons Area -->
+    <!-- Bottom Buttons Area - Margin diperkecil agar tidak terlihat sempit -->
     <LinearLayout
         android:id="@+id/layout_buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginBottom="40dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent">

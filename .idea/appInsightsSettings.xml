@@ -8,8 +8,8 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.example.nataedu" />
-                  <option name="mobileSdkAppId" value="1:267595925579:android:cdb629f7ed969d1bac65ce" />
+                  <option name="appId" value="com.nataedu" />
+                  <option name="mobileSdkAppId" value="1:267595925579:android:f1a72b6a3ca17a2bac65ce" />
                   <option name="projectId" value="nataedu-b4587" />
                   <option name="projectNumber" value="267595925579" />
                 </ConnectionSetting>
