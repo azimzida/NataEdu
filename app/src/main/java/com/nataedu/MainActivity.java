@@ -36,43 +36,7 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        // --- Kode Firestore & UI Lama (Ditambahkan Null Check agar tidak crash) ---
-        
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Button btnTest = findViewById(R.id.btnTestFirestore); // ID ini ada di home_page.xml
 
-        if (btnTest != null) {
-            btnTest.setOnClickListener(v -> {
-                Map<String, Object> data = new HashMap<>();
-                data.put("nama_aplikasi", "NataEdu");
-                data.put("pesan", "Halo dari Android Studio!");
-                data.put("timestamp", System.currentTimeMillis());
 
-                db.collection("koneksi_test")
-                        .add(data)
-                        .addOnSuccessListener(documentReference -> {
-                            Toast.makeText(MainActivity.this, "Berhasil Terhubung ke Firestore!", Toast.LENGTH_LONG).show();
-                        })
-                        .addOnFailureListener(e -> {
-                            Log.e("FirestoreError", "Error: " + e.getMessage());
-                            Toast.makeText(MainActivity.this, "Gagal: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                        });
-            });
-        }
-
-        if (findViewById(R.id.profileImage) != null) {
-            findViewById(R.id.profileImage).setOnClickListener(v -> {
-                Toast.makeText(this, "Silakan klik tombol merah di atas untuk tes Firestore", Toast.LENGTH_SHORT).show();
-            });
-        }
-
-        // Penanganan Window Insets (Null check pada ID 'main')
-        if (findViewById(R.id.main) != null) {
-            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-                return insets;
-            });
-        }
     }
 }
