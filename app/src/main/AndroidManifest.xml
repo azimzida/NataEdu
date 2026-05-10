@@ -22,6 +22,19 @@
         </activity>
         <activity
             android:name=".LoginRegisterActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+            android:name=".SignUpActivity"
+            android:exported="false" /> <!-- Tambahkan ini -->
+
+        <activity
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+            android:name=".LoginActivity"
+            android:exported="false" /> <!-- Tambahkan ini -->
+        <activity
+            android:name=".HomeActivity"
             android:exported="false" />
     </application>
 
