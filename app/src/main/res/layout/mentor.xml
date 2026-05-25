@@ -5,7 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"> <!-- Tambahkan baris ini -->
+
+    <!-- Isi layout lainnya tetap sama -->
+
 
     <ScrollView
         android:layout_width="match_parent"

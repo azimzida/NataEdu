@@ -6,7 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
+    android:fitsSystemWindows="true"
     tools:context="com.nataedu.MainActivity">
+
+    <!-- Sisanya tetap sama -->
 
     <!-- Scrollable Content -->
     <androidx.core.widget.NestedScrollView
@@ -36,7 +39,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:shapeAppearanceOverlay="@style/ShapeAppearance.MaterialComponents.SmallComponent"
-                    app:strokeColor="ffffff"
                     app:strokeWidth="1dp" />
 
                 <LinearLayout
@@ -325,6 +327,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
+            android:id="@+id/navHome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -344,6 +347,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/navCourse"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -363,6 +367,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/navMentor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
