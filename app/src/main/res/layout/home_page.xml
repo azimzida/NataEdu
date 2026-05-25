@@ -36,7 +36,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:shapeAppearanceOverlay="@style/ShapeAppearance.MaterialComponents.SmallComponent"
-                    app:strokeColor="ffffff"
                     app:strokeWidth="1dp" />
 
                 <LinearLayout
@@ -325,6 +324,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
+            android:id="@+id/navHome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -344,6 +344,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/navCourse"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -363,6 +364,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/navMentor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

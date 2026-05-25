@@ -103,7 +103,7 @@
                             android:text="See All Course"
                             android:textColor="#FFFFFF"
                             android:textSize="12sp"
-                            android:paintFlags="underline" />
+                            />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -166,7 +166,7 @@
                             android:text="See All Course"
                             android:textColor="#FFFFFF"
                             android:textSize="12sp"
-                            android:paintFlags="underline" />
+                            />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -229,7 +229,7 @@
                             android:text="See All Course"
                             android:textColor="#FFFFFF"
                             android:textSize="12sp"
-                            android:paintFlags="underline" />
+                            />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
