@@ -2,27 +2,36 @@ package com.nataedu;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.activity.EdgeToEdge;
 
-public class HomeActivity extends AppCompatActivity {
+public class CourseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.home_page);
+        setContentView(R.layout.course);
 
         LinearLayout navHome = findViewById(R.id.navHome);
         LinearLayout navCourse = findViewById(R.id.navCourse);
         LinearLayout navMentor = findViewById(R.id.navMentor);
 
+        // Inisialisasi Tombol Back
+        ImageView btnBack = findViewById(R.id.btnBack);
+        if (btnBack != null) {
+            btnBack.setOnClickListener(v -> finish());
+        }
+
+        // Opsional: Navigasi Bottom Bar di halaman Course
+        // Pastikan di layout course.xml kamu sudah menambahkan ID pada bagian bottom nav-nya
         navHome.setOnClickListener(v -> {
-            // udah di home
+            startActivity(new Intent(this, HomeActivity.class));
         });
 
         navCourse.setOnClickListener(v -> {
-            startActivity(new Intent(this, CourseActivity.class));
+            // udah di course
         });
 
         navMentor.setOnClickListener(v -> {
