@@ -8,8 +8,7 @@
     android:background="#FFFFFF"
     android:fitsSystemWindows="true"
     tools:context="com.nataedu.MainActivity">
-
-    <!-- Sisanya tetap sama -->
+    <!-- Isi layout kamu dibawahnya ... -->
 
     <!-- Scrollable Content -->
     <androidx.core.widget.NestedScrollView

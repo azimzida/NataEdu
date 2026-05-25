@@ -2,14 +2,12 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_mentor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:orientation="vertical"
-    android:fitsSystemWindows="true"> <!-- Tambahkan baris ini -->
-
-    <!-- Isi layout lainnya tetap sama -->
-
+    android:fitsSystemWindows="true">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -49,6 +47,7 @@
                     android:textStyle="bold" />
             </RelativeLayout>
 
+            <!-- Card Mentor 1 -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -145,6 +144,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <!-- Card Mentor 2 -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -241,6 +241,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <!-- Card Mentor 3 -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -340,7 +341,9 @@
         </LinearLayout>
     </ScrollView>
 
+    <!-- Bottom Navigation -->
     <LinearLayout
+        android:id="@+id/bottomNav_mentor"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:background="#852E4E"
@@ -348,6 +351,7 @@
         android:weightSum="3">
 
         <LinearLayout
+            android:id="@+id/navHomeMentor"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -367,6 +371,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/navCourseMentor"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -386,6 +391,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/navMentorMentor"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -404,7 +410,5 @@
                 android:textSize="12sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
     </LinearLayout>
-
 </LinearLayout>
