@@ -96,7 +96,7 @@
                             <ImageView
                                 android:layout_width="14dp"
                                 android:layout_height="14dp"
-                                android:src="@android:drawable/star_big_on"
+                                android:src="@drawable/icon_kontak"
                                 app:tint="#852E4E"/>
                             <TextView
                                 android:layout_width="wrap_content"
@@ -114,7 +114,7 @@
                             <ImageView
                                 android:layout_width="14dp"
                                 android:layout_height="14dp"
-                                android:src="@android:drawable/star_big_on"
+                                android:src="@drawable/ic_history"
                                 app:tint="#852E4E"/>
                             <TextView
                                 android:layout_width="wrap_content"
@@ -179,7 +179,7 @@
                             <ImageView
                                 android:layout_width="14dp"
                                 android:layout_height="14dp"
-                                android:src="@android:drawable/star_big_on"
+                                android:src="@drawable/icon_kontak"
                                 app:tint="#852E4E"/>
                             <TextView
                                 android:layout_width="wrap_content"
@@ -197,7 +197,7 @@
                             <ImageView
                                 android:layout_width="14dp"
                                 android:layout_height="14dp"
-                                android:src="@android:drawable/star_big_on"
+                                android:src="@drawable/ic_history"
                                 app:tint="#852E4E"/>
                             <TextView
                                 android:layout_width="wrap_content"
@@ -262,7 +262,7 @@
                             <ImageView
                                 android:layout_width="14dp"
                                 android:layout_height="14dp"
-                                android:src="@android:drawable/star_big_on"
+                                android:src="@drawable/icon_kontak"
                                 app:tint="#852E4E"/>
                             <TextView
                                 android:layout_width="wrap_content"
@@ -280,7 +280,7 @@
                             <ImageView
                                 android:layout_width="14dp"
                                 android:layout_height="14dp"
-                                android:src="@android:drawable/star_big_on"
+                                android:src="@drawable/ic_history"
                                 app:tint="#852E4E"/>
                             <TextView
                                 android:layout_width="wrap_content"
