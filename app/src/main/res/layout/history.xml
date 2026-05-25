@@ -32,7 +32,7 @@
                     android:layout_height="30dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerInParent="true"
-                    android:src="@android:drawable/star_big_on"
+                    android:src="@drawable/icon_back"
                     app:tint="#852E4E" />
 
                 <TextView
@@ -70,7 +70,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="@android:drawable/star_big_on" />
+                            android:src="@drawable/js_logo" />
                     </androidx.cardview.widget.CardView>
 
                     <LinearLayout
@@ -153,7 +153,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="@android:drawable/star_big_on" />
+                            android:src="@drawable/ui_course_logo" />
                     </androidx.cardview.widget.CardView>
 
                     <LinearLayout
@@ -236,7 +236,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="@android:drawable/star_big_on" />
+                            android:src="@drawable/network_course_logo" />
                     </androidx.cardview.widget.CardView>
 
                     <LinearLayout
@@ -313,7 +313,7 @@
             <ImageView
                 android:layout_width="26dp"
                 android:layout_height="26dp"
-                android:src="@android:drawable/star_big_on"
+                android:src="@drawable/icon_home"
                 app:tint="#FFFFFF" />
             <TextView
                 android:layout_width="wrap_content"
@@ -333,7 +333,7 @@
             <ImageView
                 android:layout_width="26dp"
                 android:layout_height="26dp"
-                android:src="@android:drawable/star_big_on"
+                android:src="@drawable/icon_course"
                 app:tint="#FFFFFF" />
             <TextView
                 android:layout_width="wrap_content"
@@ -353,7 +353,7 @@
             <ImageView
                 android:layout_width="26dp"
                 android:layout_height="26dp"
-                android:src="@android:drawable/star_big_on"
+                android:src="@drawable/icon_mentor"
                 app:tint="#FFFFFF" />
             <TextView
                 android:layout_width="wrap_content"

@@ -35,7 +35,9 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:shapeAppearanceOverlay="@style/ShapeAppearance.MaterialComponents.SmallComponent" />
+                    app:shapeAppearanceOverlay="@style/ShapeAppearance.MaterialComponents.SmallComponent"
+                    app:strokeColor="ffffff"
+                    app:strokeWidth="1dp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -193,7 +195,7 @@
                     android:id="@+id/historyLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@android:drawable/ic_menu_recent_history"
+                    android:drawableStart="@drawable/simbol_history"
                     android:drawablePadding="8dp"
                     android:drawableTint="#5D3E3E"
                     android:text="History"
@@ -331,7 +333,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_today"
+                android:src="@drawable/icon_home"
                 app:tint="#FFFFFF" />
             <TextView
                 android:layout_width="wrap_content"
@@ -350,7 +352,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_agenda"
+                android:src="@drawable/icon_course"
                 app:tint="#FFFFFF" />
             <TextView
                 android:layout_width="wrap_content"
@@ -369,7 +371,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_myplaces"
+                android:src="@drawable/icon_mentor"
                 app:tint="#FFFFFF" />
             <TextView
                 android:layout_width="wrap_content"
