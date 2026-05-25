@@ -30,8 +30,8 @@
 
                 <ImageView
                     android:id="@+id/btnBack"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerInParent="true"
                     android:src="@drawable/icon_back"
@@ -51,12 +51,12 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="20dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp">
 
                 <ImageView
-                    android:layout_width="370dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/javascript_logo" />
@@ -67,10 +67,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="JavaScript Class"
-                android:textColor="#1A1A1A"
+                android:textColor="#852E4E"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="6dp" />
+                android:layout_marginBottom="4dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -82,15 +82,15 @@
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:src="@drawable/icon_kontak"
-                    app:tint="#852E4E" />
+                    app:tint="#444444" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:text="by Nadya Ramadhani"
-                    android:textColor="#6F3E3E"
-                    android:textSize="13sp" />
+                    android:textColor="#444444"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <!-- Description -->
@@ -103,27 +103,27 @@
                 android:lineSpacingExtra="4dp"
                 android:layout_marginBottom="20dp" />
 
-            <!-- Modul Button (with star icon) -->
+            <!-- Modul Button -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                app:cardCornerRadius="32dp"
-                app:cardElevation="2dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
                 app:cardBackgroundColor="#FFFFFF"
-                app:strokeColor="#852E4E"
-                app:strokeWidth="1.5dp">
+                app:strokeColor="#E0E0E0"
+                app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:paddingHorizontal="20dp">
+                    android:paddingHorizontal="16dp">
 
                     <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:src="@drawable/simbol_kotak"
                         app:tint="#852E4E" />
 
@@ -132,8 +132,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
                         android:text="Modul"
-                        android:textColor="#852E4E"
-                        android:textSize="15sp"
+                        android:textColor="#1A1A1A"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -146,7 +146,7 @@
                 android:textColor="#444444"
                 android:textSize="13sp"
                 android:lineSpacingExtra="3dp"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="12dp" />
 
             <!-- Price -->
             <LinearLayout
@@ -158,17 +158,16 @@
                 <ImageView
                     android:layout_width="16dp"
                     android:layout_height="16dp"
-                    android:src="@drawable/simbol_kotak"
-                    app:tint="#852E4E" />
+                    android:src="@drawable/icon_pricetag"
+                    app:tint="#444444" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:text="Rp 35.000"
-                    android:textColor="#1A1A1A"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textColor="#444444"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <!-- Proceed to Payment Button -->
@@ -177,12 +176,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rectangle"
+                app:backgroundTint="#852E4E"
                 android:text="Proceed to Payment"
-                android:textColor="#ffff"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="13dp" />
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="10dp" />
 
         </LinearLayout>
     </ScrollView>
