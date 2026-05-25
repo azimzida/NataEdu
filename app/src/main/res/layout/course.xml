@@ -253,7 +253,7 @@
             <ImageView
                 android:layout_width="26dp"
                 android:layout_height="26dp"
-                android:src="@android:drawable/star_big_on"
+                android:src="@drawable/icon_home"
                 app:tint="#FFFFFF" />
             <TextView
                 android:layout_width="wrap_content"
@@ -273,7 +273,7 @@
             <ImageView
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:src="@android:drawable/star_big_on"
+                android:src="@drawable/icon_course"
                 app:tint="#FFFFFF" />
             <TextView
                 android:layout_width="wrap_content"
@@ -294,7 +294,7 @@
             <ImageView
                 android:layout_width="26dp"
                 android:layout_height="26dp"
-                android:src="@android:drawable/star_big_on"
+                android:src="@drawable/icon_mentor"
                 app:tint="#FFFFFF" />
             <TextView
                 android:layout_width="wrap_content"
