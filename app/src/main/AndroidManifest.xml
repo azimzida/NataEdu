@@ -11,36 +11,50 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NataEdu">
+
         <activity
             android:name="com.nataedu.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".LoginRegisterActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+
         <activity
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".SignUpActivity"
-            android:exported="false" /> <!-- Tambahkan ini -->
+            android:exported="false" />
 
         <activity
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".LoginActivity"
-            android:exported="false" /> <!-- Tambahkan ini -->
+            android:exported="false" />
+
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
-        <activity android:name=".MentorActivity" />
+
+        <activity
+            android:name=".MentorActivity"
+            android:exported="false" />
+
         <activity
             android:name=".CourseActivity"
             android:exported="false"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+
+        <!-- TAMBAHKAN INI AGAR BISA PINDAH KE HALAMAN CODING -->
+        <activity
+            android:name=".CodingCourseActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+
     </application>
 
 </manifest>
