@@ -58,6 +58,12 @@
             android:name=".JavascriptMateriActivity"
             android:exported="false"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name=".PaymentActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+
+
 
     </application>
 

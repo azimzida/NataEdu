@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <!-- Efek Gradasi Bawah sesuai gambar -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_gradient_bottom" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="32dp">
+
+        <!-- Toolbar / Header -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:src="@drawable/icon_back"
+                app:tint="#852E4E" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Quiz"
+                android:textColor="#852E4E"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <!-- Spacer agar konten di tengah -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8" />
+
+        <!-- Gambar Illustrasi (Globe + People) -->
+        <!-- Pastikan nataedu_icon adalah gambar globe tersebut -->
+        <ImageView
+            android:id="@+id/imgIllustration"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitCenter"
+            android:src="@drawable/nataedu_icon" />
+
+        <!-- Teks Let's Start the Quiz! -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Let’s Start the Quiz!"
+            android:textColor="#852E4E"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <!-- Tombol Start (Pill Shaped Gradient) -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btnStart"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="#852E4E"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="6dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingVertical="12dp"
+                android:text="Start"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Spacer Bawah -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.2" />
+
+    </LinearLayout>
+</RelativeLayout>
