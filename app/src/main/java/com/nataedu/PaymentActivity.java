@@ -1,8 +1,11 @@
-package com.nataedu; // Ganti dengan nama package kamu
+package com.nataedu;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
-import android.widget.Button;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,9 +16,12 @@ public class PaymentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.paymentjavascript); // Pastikan nama layout xml payment lu bener
+        setContentView(R.layout.paymentjavascript);
 
-        // 1. Hubungkan semua komponen ID sesuai XML baru lu
+        // Load animasi mentul biar tombol interaktif saat diklik
+        final Animation animScale = AnimationUtils.loadAnimation(this, R.anim.scale_button);
+
+        // 1. Hubungkan semua komponen ID sesuai XML lu
         TextView tvPaymentStatusHeader = findViewById(R.id.tvPaymentStatusHeader);
         ImageView ivHeaderIcon = findViewById(R.id.ivHeaderIcon);
         LinearLayout layoutPaymentInfo = findViewById(R.id.layoutPaymentInfo);
@@ -27,44 +33,53 @@ public class PaymentActivity extends AppCompatActivity {
             btnBack.setOnClickListener(v -> finish());
         }
 
-        // 3. Logika Tombol View Payment (Anti-Mental Balik)
+        // 3. Logika Tombol View Payment & Continue
         if (btnViewPayment != null) {
-            // Kita set teks awalnya lewat Java dulu biar AMAN dan PASTI kebaca "View payment"
             btnViewPayment.setText("View payment");
 
             btnViewPayment.setOnClickListener(new View.OnClickListener() {
-
                 @Override
                 public void onClick(View v) {
+                    // Jalankan animasi mentul setiap tombol diklik
+                    v.startAnimation(animScale);
+
                     String currentText = btnViewPayment.getText().toString().trim();
 
-                    // Pake equalsIgnoreCase biar akurat ngebaca teksnya
                     if (currentText.equalsIgnoreCase("View payment")) {
+                        // Kasih delay dikit biar animasi selesaian pas perubahan status pertama
+                        new Handler().postDelayed(() -> {
+                            // 1. Ganti judul atas jadi Sukses
+                            if (tvPaymentStatusHeader != null) {
+                                tvPaymentStatusHeader.setText("Payment Successful");
+                            }
 
-                        // 1. Ganti judul atas jadi Sukses
-                        if (tvPaymentStatusHeader != null) {
-                            tvPaymentStatusHeader.setText("Payment Successful");
-                        }
+                            // 2. Ganti ikon bulet atas jadi centang drawable lu
+                            if (ivHeaderIcon != null) {
+                                ivHeaderIcon.setImageResource(R.drawable.ic_check);
+                            }
 
-                        // 2. Ganti ikon bulet atas jadi centang bawaan android biar ga error nyari drawable
-                        if (ivHeaderIcon != null) {
-                            ivHeaderIcon.setImageResource(R.drawable.ic_check);
-                        }
+                            // 3. Sembunyikan detail harga & info kedaluwarsa QRIS
+                            if (layoutPaymentInfo != null) {
+                                layoutPaymentInfo.setVisibility(View.GONE);
+                            }
 
-                        // 3. Sembunyikan detail harga & info kedaluwarsa QRIS
-                        if (layoutPaymentInfo != null) {
-                            layoutPaymentInfo.setVisibility(View.GONE);
-                        }
-
-                        // 4. Ganti teks tombolnya jadi "Continue"
-                        btnViewPayment.setText("Continue");
+                            // 4. Ganti teks tombolnya jadi "Continue"
+                            btnViewPayment.setText("Continue");
+                        }, 200);
 
                     } else if (currentText.equalsIgnoreCase("Continue")) {
-                        // Pas teksnya udah berubah jadi "Continue" dan diklik lagi,
-                        // baru lu arahin mau ke mana. Misal balik ke halaman utama/materi.
-                        finish();
+                        // JANGAN finish() di sini, langsung gass pindah ke halaman Quiz & Certificate!
+                        new Handler().postDelayed(() -> {
+                            Intent intent = new Intent(PaymentActivity.this, JavascriptQuizCertificateActivity.class);
+                            startActivity(intent);
+
+                            // Tambahin finish() di bawah startActivity kalau lu mau halaman payment-nya
+                            // langsung ditutup permanen (biar user ga bisa back ke halaman QRIS lagi).
+                            finish();
+                        }, 250); // Delay 0.25 detik biar animasinya beres mentul dulu
                     }
                 }
             });
         }
-    }}
+    }
+}
