@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView; // Pastikan import ini ada
 
 public class JavascriptMateriActivity extends AppCompatActivity {
 
@@ -19,38 +20,56 @@ public class JavascriptMateriActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.javascript_materi);
 
-        // Load animasi ditaruh di sini (setelah setContentView biar aman dan ga crash)
+        // Load animasi
         final Animation animScale = AnimationUtils.loadAnimation(this, R.anim.scale_button);
 
-        // 1. TOMBOL BACK (Mundur ke halaman list course)
+        // 1. TOMBOL BACK
         ImageView btnBack = findViewById(R.id.btnBack);
         if (btnBack != null) {
             btnBack.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finish(); // Menutup halaman detail materi
+                    finish();
                 }
             });
         }
 
-        // 2. TOMBOL PROCEED TO PAYMENT (Maju ke halaman QRIS dengan delay animasi)
+        // 2. TOMBOL MODUL (Pindah ke DetailModulActivity)
+        CardView btnModul = findViewById(R.id.btnModul);
+        if (btnModul != null) {
+            btnModul.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Jalankan animasi klik
+                    v.startAnimation(animScale);
+
+                    // Beri sedikit delay agar animasi terlihat sebelum pindah halaman
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(JavascriptMateriActivity.this, DetailModulActivity.class);
+                            startActivity(intent);
+                        }
+                    }, 250);
+                }
+            });
+        }
+
+        // 3. TOMBOL PROCEED TO PAYMENT
         Button btnPayment = findViewById(R.id.btnPayment);
         if (btnPayment != null) {
             btnPayment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // 1. Jalankan animasi mantul pas diklik
                     v.startAnimation(animScale);
 
-                    // 2. Kasih jeda waktu 250 milidetik biar animasinya selesai kelihatan mentul
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            // 3. Setelah animasi kelar, baru pindah ke halaman QRIS
                             Intent intent = new Intent(JavascriptMateriActivity.this, PaymentActivity.class);
                             startActivity(intent);
                         }
-                    }, 250); // Jeda 0.25 detik
+                    }, 250);
                 }
             });
         }

@@ -104,8 +104,9 @@
                 android:lineSpacingExtra="4dp"
                 android:layout_marginBottom="20dp" />
 
-            <!-- Modul Button -->
+            <!-- Modul Button (DITAMBAHKAN ID DAN EFEK KLIK) -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/btnModul"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -113,7 +114,10 @@
                 app:cardElevation="4dp"
                 app:cardBackgroundColor="#FFFFFF"
                 app:strokeColor="#E0E0E0"
-                app:strokeWidth="1dp">
+                app:strokeWidth="1dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
 
                 <LinearLayout
                     android:layout_width="match_parent"

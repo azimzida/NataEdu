@@ -66,6 +66,10 @@
             android:exported="false" />
         <activity android:name=".QuizActivity"
             android:exported="false" />
+        <activity
+            android:name=".DetailModulActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
 
 
 
