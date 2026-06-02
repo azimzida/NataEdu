@@ -81,7 +81,7 @@
 
                 <ImageView
                     android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_height="19dp"
                     android:src="@drawable/icon_kontak"
                     app:tint="#444444" />
 

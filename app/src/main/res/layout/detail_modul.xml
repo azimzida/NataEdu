@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true">
+    android:orientation="vertical">
 
+    <!-- Konten Atas & Tengah yang bisa di-scroll -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -22,6 +22,7 @@
             android:paddingTop="16dp"
             android:paddingBottom="24dp">
 
+            <!-- Custom Toolbar / Header -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -44,12 +45,8 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </RelativeLayout>
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:layout_marginBottom="20dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp">
+
+            <!-- Banner Utama (Sementara default star_big_on) -->
             <ImageView
                 android:id="@+id/imgBanner"
                 android:layout_width="match_parent"
@@ -57,8 +54,8 @@
                 android:layout_marginBottom="20dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/javascript_logo" />
-            </androidx.cardview.widget.CardView>
 
+            <!-- Judul Kelas -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -68,6 +65,7 @@
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
+            <!-- Nama Mentor -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -76,8 +74,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
+                    android:layout_width="15dp"
+                    android:layout_height="20dp"
                     android:layout_marginEnd="8dp"
                     android:src="@drawable/icon_kontak" />
 
@@ -89,78 +87,102 @@
                     android:textSize="15sp" />
             </LinearLayout>
 
+            <!-- Deskripsi Kelas Baru Sesuai Gambar -->
+
+            <!-- TOMBOL QUIZ (Trik CardView untuk membuat border Maroon tanpa file tambahan) -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="36dp"
                 android:lineSpacingMultiplier="1.2"
-                android:text="This course covers essential JavaScript concepts, from basic syntax to problem solving and DOM interaction, designed for beginners who want to start web development."
+                android:text="JavaScript classes are a modern feature introduced in ES6 that allow developers to create objects using a clearer and more structured syntax based on object-oriented programming (OOP). A class acts as a blueprint for creating objects, where properties represent data and methods define behavior. Each class typically includes a constructor, which is a special method used to initialize object properties when a new instance is created. The this keyword is used to refer to the current object instance, making it possible to access and modify its properties and methods. By using classes, developers can organize code more effectively, support concepts like encapsulation and inheritance, and build applications that are easier to maintain and scale."
                 android:textColor="#4C1D3D"
                 android:textSize="15sp" />
 
-            <LinearLayout
-                android:id="@+id/btnQuiz"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_button_rounded"
-                android:elevation="2dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingVertical="18dp"
-                android:paddingHorizontal="20dp">
+                app:cardBackgroundColor="#852E4E"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true">
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/simbol_kotak" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <!-- Inner layout dengan warna putih dan padding kecil sebagai ketebalan garis tepi -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Quiz"
-                    android:textColor="#4C1D3D"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    android:layout_margin="1.5dp"
+                    android:background="#FFFFFF"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="16dp">
 
-            <LinearLayout
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@android:drawable/star_big_on" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Quiz"
+                        android:textColor="#4C1D3D"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- TOMBOL CERTIFICATE -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/bg_button_rounded"
-                android:elevation="2dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingVertical="18dp"
-                android:paddingHorizontal="20dp">
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#852E4E"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="3dp"
+                app:cardUseCompatPadding="true">
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/simbol_kotak" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Certificate"
-                    android:textColor="#4C1D3D"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    android:layout_margin="1.5dp"
+                    android:background="#FFFFFF"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@android:drawable/star_big_on" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Certificate"
+                        android:textColor="#4C1D3D"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
     </ScrollView>
 
+    <!-- Bottom Navigation Bar (Tetap nempel kuat di paling bawah layar) -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="72dp"
         android:background="#852E4E"
         android:gravity="center"
         android:orientation="horizontal">
 
+        <!-- Menu Home -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -182,6 +204,7 @@
                 android:textSize="12sp" />
         </LinearLayout>
 
+        <!-- Menu Course -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -203,6 +226,7 @@
                 android:textSize="12sp" />
         </LinearLayout>
 
+        <!-- Menu Mentor -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
