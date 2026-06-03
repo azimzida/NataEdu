@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Quiz3Activity extends AppCompatActivity {
 
-    private TextView btnHeaderBack, txtWrongCount, txtCorrectCount, txtTotalScore;
-    private Button btnSeeScore; // 👈 Ganti nama variabelnya biar serasi
+    private TextView btnHeaderBack, txtWrongCount, txtCorrectCount;
+    private Button btnSeeScore;
     private String jawab1, jawab2, jawab3;
     private int correct = 0;
     private int wrong = 0;
@@ -25,6 +25,7 @@ public class Quiz3Activity extends AppCompatActivity {
         btnHeaderBack = findViewById(R.id.btnHeaderBack);
         txtWrongCount = findViewById(R.id.txtWrongCount);
         txtCorrectCount = findViewById(R.id.txtCorrectCount);
+        btnSeeScore = findViewById(R.id.btnSeeScore);
 
         // Ambil data kiriman teks pilihan user dari QuizActivity
         Intent intent = getIntent();
@@ -102,6 +103,17 @@ public class Quiz3Activity extends AppCompatActivity {
         // Update jumlah skor akhir di bagian atas layar
         txtWrongCount.setText("wrong : " + wrong);
         txtCorrectCount.setText("correct : " + correct);
+
+        // Aksi tombol See Score ke halaman Congrats
+        btnSeeScore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentCongrats = new Intent(Quiz3Activity.this, CongratsActivity.class);
+                intentCongrats.putExtra("CORRECT_ANSWERS", correct);
+                intentCongrats.putExtra("TOTAL_QUESTIONS", 3);
+                startActivity(intentCongrats);
+            }
+        });
     }
 
     // Fungsi pemroses otomatis untuk mencentang buletan, mewarnai teks, dan menampilkan ikon silang

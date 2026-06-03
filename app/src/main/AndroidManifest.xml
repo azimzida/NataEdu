@@ -66,12 +66,14 @@
             android:exported="false" />
         <activity android:name=".WelcomeQuizActivity"
             android:exported="false" />
-        <activity android:name=".QuizActivity" />
-        <activity android:name=".Quiz2Activity"
-             />
+        <activity android:name=".QuizActivity"
+            android:exported="false" />
         <activity android:name=".Quiz3Activity"
-             />
-
+            android:exported="false" />
+        <activity android:name=".CongratsActivity"
+            android:exported="false" />
+        <activity android:name=".DetailModulActivity"
+            android:exported="false" />
 
 
 
