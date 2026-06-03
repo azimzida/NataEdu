@@ -72,6 +72,8 @@
             android:exported="false" />
         <activity android:name=".CongratsActivity"
             android:exported="false" />
+        <activity android:name=".CertificateActivity"
+            android:exported="false" />
         <activity android:name=".DetailModulActivity"
             android:exported="false" />
 

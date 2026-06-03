@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CongratsActivity extends AppCompatActivity {
 
-    private ImageButton btnBack, btnSeeDetail;
+    private ImageButton btnBack, btnSeeCertificate;
     private TextView txtScorePercent, txtSummary;
 
     @Override
@@ -18,7 +18,7 @@ public class CongratsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_congrats);
 
         btnBack = findViewById(R.id.btnBack);
-        btnSeeDetail = findViewById(R.id.btnSeeDetail);
+        btnSeeCertificate = findViewById(R.id.btnSeeCertificate);
         txtScorePercent = findViewById(R.id.txtScorePercent);
         txtSummary = findViewById(R.id.txtSummary);
 
@@ -41,11 +41,11 @@ public class CongratsActivity extends AppCompatActivity {
             }
         });
 
-        btnSeeDetail.setOnClickListener(new View.OnClickListener() {
+        btnSeeCertificate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Sesuai permintaan, ini bisa diarahkan kembali ke review atau lainnya
-                finish();
+                Intent intent = new Intent(CongratsActivity.this, CertificateActivity.class);
+                startActivity(intent);
             }
         });
     }
