@@ -42,7 +42,7 @@ public class JavascriptQuizCertificateActivity extends AppCompatActivity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Intent intent = new Intent(JavascriptQuizCertificateActivity.this, QuizActivity.class);
+                            Intent intent = new Intent(JavascriptQuizCertificateActivity.this, WelcomeQuizActivity.class);
                             startActivity(intent);
                         }
                     }, 250);

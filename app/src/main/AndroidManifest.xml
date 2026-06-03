@@ -64,8 +64,14 @@
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity android:name=".JavascriptQuizCertificateActivity"
             android:exported="false" />
-        <activity android:name=".QuizActivity"
+        <activity android:name=".WelcomeQuizActivity"
             android:exported="false" />
+        <activity android:name=".QuizActivity" />
+        <activity android:name=".Quiz2Activity"
+             />
+        <activity android:name=".Quiz3Activity"
+             />
+
 
 
 

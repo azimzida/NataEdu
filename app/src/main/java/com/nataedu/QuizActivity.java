@@ -1,66 +1,71 @@
 package com.nataedu;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
-import androidx.activity.EdgeToEdge;
+import android.widget.RadioGroup;
+import android.widget.RadioButton;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
-// Pastikan diisi "extends AppCompatActivity" biar fungsinya aktif!
 public class QuizActivity extends AppCompatActivity {
+
+    private Button btnBackToClass, btnFinishQuiz;
+    private RadioGroup rgSoal1, rgSoal2, rgSoal3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-
-        // 1. Sambungkan ke layout XML kuis lu (pastikan nama file XML-nya sudah benar 'quiz')
         setContentView(R.layout.quiz);
 
-        // Load animasi mentul biar pas tombol Start dipencet kelihatan interaktif
-        final Animation animScale = AnimationUtils.loadAnimation(this, R.anim.scale_button);
+        rgSoal1 = findViewById(R.id.radioGroupSoal1);
+        rgSoal2 = findViewById(R.id.radioGroupSoal2);
+        rgSoal3 = findViewById(R.id.radioGroupSoal3);
 
-        // 2. Logika untuk Tombol Back di pojok kiri atas
-        ImageView btnBack = findViewById(R.id.btnBack);
-        if (btnBack != null) {
-            btnBack.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish(); // Menutup halaman kuis, balik ke materi/sertifikat
+        btnBackToClass = findViewById(R.id.btnBackToClass);
+        btnFinishQuiz = findViewById(R.id.btnFinishQuiz);
+
+        btnFinishQuiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 1. Ambil ID RadioButton yang dipilih user
+                int idJawab1 = rgSoal1.getCheckedRadioButtonId();
+                int idJawab2 = rgSoal2.getCheckedRadioButtonId();
+                int idJawab3 = rgSoal3.getCheckedRadioButtonId();
+
+                // 2. Siapkan variabel untuk menyimpan teks jawaban
+                String jawaban1 = "";
+                String jawaban2 = "";
+                String jawaban3 = "";
+
+                // 3. Validasi & Ambil teks jawaban jika user sudah memilih
+                if (idJawab1 != -1) {
+                    RadioButton rb1 = findViewById(idJawab1);
+                    jawaban1 = rb1.getText().toString();
                 }
-            });
-        }
-
-        // 3. Logika untuk Tombol Start Marun
-        // Catatan: Pastikan di file quiz.xml lu, tombol marunnya sudah dikasih id: android:id="@+id/btnStartQuiz"
-        CardView btnStartQuiz = findViewById(R.id.btnStartQuiz);
-        if (btnStartQuiz != null) {
-            btnStartQuiz.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Jalankan efek mentul pas ditekan
-                    v.startAnimation(animScale);
-
-                    // Kasih delay bentar biar animasinya selesai kelihatan mentul
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            // Sementara kasih notifikasi pop-up dulu biar tahu tombolnya berhasil aktif!
-                            Toast.makeText(QuizActivity.this, "Quiz Started!", Toast.LENGTH_SHORT).show();
-
-                            // Nanti kalau lu udah bikin halaman soalnya, tinggal pindah intent ke sini:
-                            // Intent intent = new Intent(QuizActivity.this, SoalQuizActivity.class);
-                            // startActivity(intent);
-                        }
-                    }, 250); // Delay 0.25 detik
+                if (idJawab2 != -1) {
+                    RadioButton rb2 = findViewById(idJawab2);
+                    jawaban2 = rb2.getText().toString();
                 }
-            });
-        }
+                if (idJawab3 != -1) {
+                    RadioButton rb3 = findViewById(idJawab3);
+                    jawaban3 = rb3.getText().toString();
+                }
+
+                // 4. Langsung pindah ke Quiz3Activity (Halaman Nilai) bawa data teks jawaban
+                Intent intent = new Intent(QuizActivity.this, Quiz3Activity.class);
+                intent.putExtra("JAWABAN_1", jawaban1);
+                intent.putExtra("JAWABAN_2", jawaban2);
+                intent.putExtra("JAWABAN_3", jawaban3);
+                startActivity(intent);
+            }
+        });
+
+        btnBackToClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Menutup halaman, kembali ke kelas
+            }
+        });
     }
 }

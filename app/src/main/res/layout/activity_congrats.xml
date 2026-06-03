@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:padding="20dp"
+    android:gravity="center_horizontal"
+    >
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_back"
+        android:layout_gravity="start"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent" app:tint="#852E4E" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quiz"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#852E4E"
+        android:layout_marginTop="-35dp"
+        android:layout_marginBottom="40dp" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="25dp"
+        app:cardBackgroundColor="#852E4E"
+        app:cardElevation="10dp"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="40dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/hugeicons_champion"
+                app:tint="#FFFFFF" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Congrats!"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtScorePercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Score 90"
+                android:textColor="#92D050"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quiz completed successfully"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:id="@+id/txtSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You attempt 3 questions and from that 2 answer is correct."
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textAlignment="center"
+                android:layout_marginTop="10dp" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ImageButton
+        android:id="@+id/btnSeeDetail"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:text="See Your Review"
+        android:src="@drawable/seeyourcertif"
+        android:textColor="#852E4E"
+        android:textAllCaps="false"
+        app:cornerRadius="30dp"
+        android:elevation="5dp"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent"/>
+
+</LinearLayout>
