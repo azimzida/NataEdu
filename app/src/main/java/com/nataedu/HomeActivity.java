@@ -21,12 +21,19 @@ public class HomeActivity extends AppCompatActivity {
             // udah di home
         });
 
+        // Ganti bagian navigasi di dalam onCreate menjadi begini:
+
         navCourse.setOnClickListener(v -> {
-            startActivity(new Intent(this, CourseActivity.class));
+            Intent intent = new Intent(this, CourseActivity.class);
+            // Flag ini gunanya: "Jika halaman Course sudah ada, bawa ke depan. Jangan buat baru."
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
         });
 
         navMentor.setOnClickListener(v -> {
-            startActivity(new Intent(this, MentorActivity.class));
+            Intent intent = new Intent(this, MentorActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
         });
     }
 }

@@ -20,8 +20,13 @@ public class CourseActivity extends AppCompatActivity {
         LinearLayout navCourse = findViewById(R.id.navCourse);
         LinearLayout navMentor = findViewById(R.id.navMentor);
 
+        // Ganti bagian navigasi bawah menjadi begini:
+
         navHome.setOnClickListener(v -> {
-            startActivity(new Intent(this, HomeActivity.class));
+            Intent intent = new Intent(this, HomeActivity.class);
+            // Flag ini gunanya: "Kembali ke Home dan tutup semua halaman lain di atasnya."
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
         });
 
         navCourse.setOnClickListener(v -> {
@@ -29,7 +34,9 @@ public class CourseActivity extends AppCompatActivity {
         });
 
         navMentor.setOnClickListener(v -> {
-            startActivity(new Intent(this, MentorActivity.class));
+            Intent intent = new Intent(this, MentorActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
         });
 
         // --- INISIALISASI TOMBOL BACK ---
