@@ -15,10 +15,17 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FieldValue;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
     private EditText etEmail, etPassword;
     private AppCompatButton btnLoginSubmit;
     private TextView tvRegisterLink;
@@ -30,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.login);
 
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
@@ -43,13 +51,14 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        btnBack.setOnClickListener(v -> finish());
+        if (btnBack != null) {
+            btnBack.setOnClickListener(v -> finish());
+        }
 
         btnLoginSubmit.setOnClickListener(v -> {
             prosesLogin();
         });
 
-        // 4. Logika ke halaman Register (SUDAH DIAKTIFKAN)
         tvRegisterLink.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
             startActivity(intent);
@@ -72,15 +81,47 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        Toast.makeText(LoginActivity.this, "Selamat Datang!", Toast.LENGTH_SHORT).show();
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        checkAndSyncUser(user);
+                    } else {
+                        String pesanError = task.getException() != null ? task.getException().getMessage() : "Login Gagal";
+                        Toast.makeText(LoginActivity.this, "Gagal: " + pesanError, Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
 
-                        // UBAH DISINI: Pindah ke HomeActivity (Bukan MainActivity lagi)
+    private void checkAndSyncUser(FirebaseUser user) {
+        if (user == null) return;
+
+        db.collection("users").document(user.getUid()).get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        if (task.getResult() != null && task.getResult().exists()) {
+                            // Update last login
+                            db.collection("users").document(user.getUid())
+                                    .update("last_login", FieldValue.serverTimestamp());
+                        } else {
+                            // Akun ada di Auth tapi belum ada di Firestore, buatkan datanya
+                            Map<String, Object> userMap = new HashMap<>();
+                            userMap.put("id", user.getUid());
+                            userMap.put("username", user.getEmail().split("@")[0]); // Default username
+                            userMap.put("email", user.getEmail());
+                            userMap.put("no hp", "");
+                            userMap.put("password_hash", "managed_by_firebase_auth");
+                            userMap.put("role", "user");
+                            userMap.put("level", "beginner");
+                            userMap.put("avatar_url", null);
+                            userMap.put("fcm_token", null);
+                            userMap.put("tanggal_daftar", FieldValue.serverTimestamp());
+                            userMap.put("last_login", FieldValue.serverTimestamp());
+
+                            db.collection("users").document(user.getUid()).set(userMap);
+                        }
+                        
+                        Toast.makeText(LoginActivity.this, "Selamat Datang!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(intent);
                         finish();
-                    } else {
-                        String  pesanError = task.getException() != null ? task.getException().getMessage() : "Login Gagal";
-                        Toast.makeText(LoginActivity.this, "Gagal: " + pesanError, Toast.LENGTH_LONG).show();
                     }
                 });
     }

@@ -92,15 +92,25 @@
             android:textColor="@color/brand_maroon"
             android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/etSignupPassword"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:background="@drawable/bg_input"
-            android:inputType="textPassword"
-            android:paddingHorizontal="20dp"
-            android:textColor="@color/brand_maroon" />
+            app:hintEnabled="false"
+            app:boxBackgroundMode="none"
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/brand_maroon">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSignupPassword"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/bg_input"
+                android:inputType="textPassword"
+                android:paddingHorizontal="20dp"
+                android:textColor="@color/brand_maroon" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Sign Up Button -->
         <androidx.appcompat.widget.AppCompatButton
