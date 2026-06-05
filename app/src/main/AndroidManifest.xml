@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -55,14 +58,14 @@
             android:exported="false"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
-            android:name=".JavascriptMateriActivity"
+            android:name=".CourseMaterialActivity"
             android:exported="false"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".PaymentActivity"
             android:exported="false"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
-        <activity android:name=".JavascriptQuizCertificateActivity"
+        <activity android:name=".CourseQuizCertificateActivity"
             android:exported="false" />
         <activity android:name=".WelcomeQuizActivity"
             android:exported="false" />
@@ -74,10 +77,25 @@
             android:exported="false" />
         <activity android:name=".CertificateActivity"
             android:exported="false" />
+        <activity android:name=".AdminActivity"
+            android:exported="false" />
+        <activity android:name=".AdminAddQuizActivity"
+            android:exported="false" />
+        <activity android:name=".AdminAddCategoryActivity"
+            android:exported="false" />
+        <activity android:name=".AdminAddCourseActivity"
+            android:exported="false" />
+        <activity android:name=".AdminCourseActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity android:name=".AdminUploadedActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity android:name=".CategoryMaterialsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity android:name=".DetailModulActivity"
             android:exported="false" />
-
-
 
     </application>
 

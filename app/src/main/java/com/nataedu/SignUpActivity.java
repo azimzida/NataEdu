@@ -6,57 +6,52 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton; // Tambahkan ini
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-// Import Firebase
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FieldValue;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    // 1. Deklarasi Firebase dan View
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
     private EditText etUsername, etEmail, etPassword;
     private AppCompatButton btnSignUpSubmit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Aktifkan fitur Edge-to-Edge
         EdgeToEdge.enable(this);
         setContentView(R.layout.signup);
 
-        // 2. Inisialisasi Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
-        // 3. Inisialisasi View berdasarkan ID di signup.xml
         etUsername = findViewById(R.id.etSignupUsername);
         etEmail = findViewById(R.id.etSignupEmail);
         etPassword = findViewById(R.id.etSignupPassword);
         btnSignUpSubmit = findViewById(R.id.btnSignUpSubmit);
         ImageView btnBack = findViewById(R.id.btnBack);
 
-        // Logika agar padding otomatis menyesuaikan status bar/nav bar
+        if (btnBack != null) {
+            btnBack.setOnClickListener(v -> finish());
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // 4. Logika tombol back
-        if (btnBack != null) {
-            btnBack.setOnClickListener(v -> {
-                finish();
-            });
-        }
-
-        // 5. Logika Tombol Sign Up
-        btnSignUpSubmit.setOnClickListener(v -> {
-            prosesDaftar();
-        });
+        btnSignUpSubmit.setOnClickListener(v -> prosesDaftar());
     }
 
     private void prosesDaftar() {
@@ -64,29 +59,46 @@ public class SignUpActivity extends AppCompatActivity {
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
 
-        // Validasi Sederhana
         if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Semua kolom harus diisi!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (password.length() < 6) {
-            etPassword.setError("Password minimal 6 karakter");
-            return;
-        }
-
-        // 6. Proses Kirim Data ke Firebase Authentication
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        // Jika Berhasil
-                        Toast.makeText(SignUpActivity.this, "Pendaftaran Berhasil!", Toast.LENGTH_SHORT).show();
-                        finish(); // Kembali ke halaman Login
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        if (user != null) {
+                            simpanDataUserKeFirestore(user.getUid(), username, email);
+                        }
                     } else {
-                        // Jika Gagal (misal email sudah pernah terdaftar)
-                        String pesanError = task.getException() != null ? task.getException().getMessage() : "Gagal Daftar";
-                        Toast.makeText(SignUpActivity.this, "Kesalahan: " + pesanError, Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignUpActivity.this, "Gagal: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
+                });
+    }
+
+    private void simpanDataUserKeFirestore(String userId, String username, String email) {
+        Map<String, Object> userMap = new HashMap<>();
+        userMap.put("id", userId);
+        userMap.put("username", username);
+        userMap.put("email", email);
+        userMap.put("no hp", ""); // Sesuai nama kolom di gambar
+        userMap.put("password_hash", "managed_by_firebase_auth");
+        userMap.put("role", "user");
+        userMap.put("level", "beginner");
+        userMap.put("avatar_url", null);
+        userMap.put("fcm_token", null);
+        userMap.put("tanggal_daftar", FieldValue.serverTimestamp());
+        userMap.put("last_login", FieldValue.serverTimestamp());
+
+        db.collection("users").document(userId)
+                .set(userMap)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(SignUpActivity.this, "Pendaftaran Berhasil!", Toast.LENGTH_SHORT).show();
+                    finish();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(SignUpActivity.this, "Gagal Simpan Data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 }

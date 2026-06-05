@@ -86,7 +86,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#852E4E"
+                    android:background="@drawable/gradient_kotak"
                     android:padding="20dp">
 
                     <TextView
@@ -121,13 +121,15 @@
                         app:layout_constraintTop_toBottomOf="@id/bannerTitle2" />
 
                     <ImageView
-                        android:layout_width="120dp"
+                        android:layout_width="140dp"
                         android:layout_height="match_parent"
                         android:scaleType="centerInside"
                         android:src="@drawable/gambarcw_homepage"
+                        android:layout_marginBottom="-20dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 

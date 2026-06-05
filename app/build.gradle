@@ -47,6 +47,7 @@ dependencies {
     // LIBRARY UTAMA UNTUK LOGIN & DATABASE
     implementation 'com.google.firebase:firebase-auth'      // Untuk Login/Register
     implementation 'com.google.firebase:firebase-firestore' // Untuk Database (Simpan Profil)
+    implementation 'com.google.firebase:firebase-storage'   // Untuk Upload File (PDF)
 
     // Test Libraries
     testImplementation 'junit:junit:4.13.2'

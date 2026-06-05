@@ -26,7 +26,7 @@ public class CodingCourseActivity extends AppCompatActivity {
         CardView cardJavascript = findViewById(R.id.cardJavascript);
         if (cardJavascript != null) {
             cardJavascript.setOnClickListener(v -> {
-                Intent intent = new Intent(CodingCourseActivity.this, JavascriptMateriActivity.class);
+                Intent intent = new Intent(CodingCourseActivity.this, CourseMaterialActivity.class);
                 startActivity(intent);
             });
         }

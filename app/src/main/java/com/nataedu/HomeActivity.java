@@ -35,5 +35,14 @@ public class HomeActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
         });
+
+        // --- ADMIN ENTRY POINT (LONG PRESS PROFILE IMAGE) ---
+        com.google.android.material.imageview.ShapeableImageView profileImage = findViewById(R.id.profileImage);
+        if (profileImage != null) {
+            profileImage.setOnLongClickListener(v -> {
+                startActivity(new Intent(HomeActivity.this, AdminActivity.class));
+                return true;
+            });
+        }
     }
 }

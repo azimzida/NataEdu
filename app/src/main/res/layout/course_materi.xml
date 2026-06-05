@@ -57,17 +57,19 @@
                 app:cardElevation="4dp">
 
                 <ImageView
+                    android:id="@+id/imgBanner"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/javascript_logo" />
+                    android:src="@drawable/nataedu_icon" />
             </androidx.cardview.widget.CardView>
 
             <!-- Title & Author -->
             <TextView
+                android:id="@+id/tvCourseTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="JavaScript Class"
+                android:text="Course Title"
                 android:textColor="#852E4E"
                 android:textSize="22sp"
                 android:textStyle="bold"
@@ -86,62 +88,25 @@
                     app:tint="#444444" />
 
                 <TextView
+                    android:id="@+id/tvAuthorName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:text="by Nadya Ramadhani"
+                    android:text="by Author"
                     android:textColor="#444444"
                     android:textSize="14sp" />
             </LinearLayout>
 
             <!-- Description -->
             <TextView
+                android:id="@+id/tvDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="This course covers essential JavaScript concepts, from basic syntax to problem solving and DOM interaction, designed for beginners who want to start web development."
+                android:text="Course Description"
                 android:textColor="#444444"
                 android:textSize="14sp"
                 android:lineSpacingExtra="4dp"
-                android:layout_marginBottom="20dp" />
-
-            <!-- Modul Button (DITAMBAHKAN ID DAN EFEK KLIK) -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btnModul"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF"
-                app:strokeColor="#E0E0E0"
-                app:strokeWidth="1dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="16dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/simbol_kotak"
-                        app:tint="#852E4E" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:text="Modul"
-                        android:textColor="#1A1A1A"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                android:layout_marginBottom="36dp" />
 
             <!-- Certificate Info -->
             <TextView
@@ -167,10 +132,11 @@
                     app:tint="#444444" />
 
                 <TextView
+                    android:id="@+id/tvPriceValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:text="Rp 35.000"
+                    android:text="Rp 0"
                     android:textColor="#444444"
                     android:textSize="14sp" />
             </LinearLayout>

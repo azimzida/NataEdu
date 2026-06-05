@@ -47,7 +47,7 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/javascript_logo" />
+                        android:src="@drawable/nataedu_icon" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -56,18 +56,20 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tvCourseTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="JavaScript Class"
+                            android:text="Course Title"
                             android:textColor="#4C1D3D"
                             android:textSize="22sp"
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvAuthorName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:text="by Nadya Ramadhani"
+                            android:text="by Author"
                             android:textColor="#6F3E3E"
                             android:textSize="14sp" />
 
@@ -95,149 +97,11 @@
                 android:layout_marginBottom="20dp"
                 android:background="#CCCCCC" />
 
-            <TextView
+            <LinearLayout
+                android:id="@+id/containerSoal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1. What is the main function of a class in JavaScript?"
-                android:textColor="#4C1D3D"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <RadioGroup
-                android:id="@+id/radioGroupSoal1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="24dp">
-
-                <RadioButton
-                    android:id="@+id/opt1_a"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="4dp"
-                    android:padding="10dp"
-                    android:text="to create a loop" />
-
-                <RadioButton
-                    android:id="@+id/opt1_b"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="4dp"
-                    android:padding="10dp"
-                    android:text="to create a template for objects" />
-
-                <RadioButton
-                    android:id="@+id/opt1_c"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="4dp"
-                    android:padding="10dp"
-                    android:text="to delete variables" />
-
-                <RadioButton
-                    android:id="@+id/opt1_d"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="4dp"
-                    android:padding="10dp"
-                    android:text="to display an alert" />
-            </RadioGroup>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="2. What is the special method that runs automatically when an object is created from a class?"
-                android:textColor="#4C1D3D"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <RadioGroup
-                android:id="@+id/radioGroupSoal2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="24dp">
-
-                <RadioButton
-                    android:id="@+id/opt2_a"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="4dp"
-                    android:padding="10dp"
-                    android:text="function" />
-
-                <RadioButton
-                    android:id="@+id/opt2_b"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="4dp"
-                    android:padding="10dp"
-                    android:text="return" />
-
-                <RadioButton
-                    android:id="@+id/opt2_c"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="4dp"
-                    android:padding="10dp"
-                    android:text="constructor" />
-
-                <RadioButton
-                    android:id="@+id/opt2_d"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="4dp"
-                    android:padding="10dp"
-                    android:text="import" />
-            </RadioGroup>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="3. Which keyword is used to create a new object from a class?"
-                android:textColor="#4C1D3D"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <RadioGroup
-                android:id="@+id/radioGroupSoal3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="32dp">
-
-                <RadioButton
-                    android:id="@+id/opt3_a"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="4dp"
-                    android:padding="10dp"
-                    android:text="create" />
-
-                <RadioButton
-                    android:id="@+id/opt3_b"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="4dp"
-                    android:padding="10dp"
-                    android:text="class" />
-
-                <RadioButton
-                    android:id="@+id/opt3_c"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="4dp"
-                    android:padding="10dp"
-                    android:text="new" />
-
-                <RadioButton
-                    android:id="@+id/opt3_d"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="4dp"
-                    android:padding="10dp"
-                    android:text="object" />
-            </RadioGroup>
+                android:orientation="vertical" />
 
         </LinearLayout>
     </ScrollView>
