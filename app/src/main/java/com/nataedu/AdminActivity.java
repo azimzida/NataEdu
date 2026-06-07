@@ -2,7 +2,6 @@ package com.nataedu;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,7 +53,7 @@ public class AdminActivity extends AppCompatActivity {
             startActivity(new Intent(this, AdminUploadedActivity.class));
         });
 
-        // --- LOGIKA LOGOUT (KLIK FOTO PROFIL) ---
+        // --- LOGIKA LOGOUT (KLIK FOTO PROFIL DI KANAN ATAS) ---
         if (adminProfileImage != null) {
             adminProfileImage.setOnClickListener(v -> showLogoutDialog());
         }

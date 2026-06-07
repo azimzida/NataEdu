@@ -20,33 +20,17 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <!-- 1. Header: Admin Profile & Logout -->
+            <!-- 1. Header: Welcome Text (Left) & Admin Profile (Right) -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/adminProfileImage"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:padding="2dp"
-                    android:src="@drawable/fotoprofil"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:shapeAppearanceOverlay="@style/ShapeAppearance.MaterialComponents.SmallComponent"
-                    app:strokeWidth="1dp" />
-
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/adminProfileImage"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
@@ -66,14 +50,21 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
-                <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@drawable/loncengnotif_logo"
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/adminProfileImage"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="2dp"
+                    android:src="@drawable/fotoprofil"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="#852E4E" />
+                    app:shapeAppearanceOverlay="@style/ShapeAppearance.MaterialComponents.SmallComponent"
+                    app:strokeWidth="1dp" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- 2. Banner Admin -->
@@ -225,7 +216,8 @@
                 android:layout_height="wrap_content"
                 android:text="Home"
                 android:textColor="#FFFFFF"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout

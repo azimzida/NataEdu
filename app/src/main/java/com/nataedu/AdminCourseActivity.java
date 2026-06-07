@@ -27,8 +27,6 @@ public class AdminCourseActivity extends AppCompatActivity {
     private EditText etSearch;
     private FirebaseFirestore db;
     private List<Course> allMaterials = new ArrayList<>();
-    private Map<String, MaterialAdapter> categoryAdapters = new HashMap<>();
-    private Map<String, List<Course>> categoryLists = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,8 +83,6 @@ public class AdminCourseActivity extends AppCompatActivity {
 
     private void setupDynamicCategories(String query) {
         dynamicCategoryContainer.removeAllViews();
-        categoryAdapters.clear();
-        categoryLists.clear();
 
         // Grouping materials by category
         Map<String, List<Course>> grouped = new HashMap<>();
@@ -100,14 +96,14 @@ public class AdminCourseActivity extends AppCompatActivity {
             }
         }
 
-        // Create UI for each category found
+        // Create UI for each category found (Matches the reference image)
         for (String categoryName : grouped.keySet()) {
-            addCategoryToUI(categoryName, grouped.get(categoryName));
+            addCategorySectionToUI(categoryName, grouped.get(categoryName));
         }
     }
 
-    private void addCategoryToUI(String name, List<Course> materials) {
-        // Title
+    private void addCategorySectionToUI(String name, List<Course> materials) {
+        // Category Header (e.g. "Coding")
         TextView tvTitle = new TextView(this);
         tvTitle.setText(name);
         tvTitle.setTextColor(Color.parseColor("#5D3E3E"));
@@ -116,7 +112,7 @@ public class AdminCourseActivity extends AppCompatActivity {
         tvTitle.setPadding(0, 24, 0, 8);
         dynamicCategoryContainer.addView(tvTitle);
 
-        // Divider
+        // Thin Divider Line
         View line = new View(this);
         line.setBackgroundColor(Color.parseColor("#EEEEEE"));
         LinearLayout.LayoutParams lineParams = new LinearLayout.LayoutParams(
@@ -124,12 +120,12 @@ public class AdminCourseActivity extends AppCompatActivity {
         lineParams.setMargins(0, 4, 0, 24);
         dynamicCategoryContainer.addView(line, lineParams);
 
-        // Grid
+        // RecyclerView with 2-column Grid for Materials
         RecyclerView rv = new RecyclerView(this);
         rv.setLayoutManager(new GridLayoutManager(this, 2));
         MaterialAdapter adapter = new MaterialAdapter(materials, this::onMaterialClick);
         rv.setAdapter(adapter);
-        rv.setNestedScrollingEnabled(false); // Biar smooth di dalam NestedScrollView
+        rv.setNestedScrollingEnabled(false); 
         dynamicCategoryContainer.addView(rv);
     }
 

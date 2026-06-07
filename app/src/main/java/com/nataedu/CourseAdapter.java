@@ -35,11 +35,21 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         Course course = courseList.get(position);
         holder.tvCourseName.setText(course.getNama_course());
         
-        // Handle images (for now using placeholder based on name or generic)
-            holder.imgCourse.setImageResource(R.drawable.course_coding);
-            holder.imgCourse.setImageResource(R.drawable.course_uiux);
-            holder.imgCourse.setImageResource(R.drawable.course_cybersecurity);
+        // Handle Author
+        if (course.getAuthor() != null) {
+            holder.tvAuthor.setText("by " + course.getAuthor());
         } else {
+            holder.tvAuthor.setText("");
+        }
+
+        // Handle images
+        String name = course.getNama_course().toLowerCase();
+        if (name.contains("javascript")) {
+            holder.imgCourse.setImageResource(R.drawable.javascript_logo);
+        } else if (name.contains("ui design") || name.contains("ui/ux")) {
+            holder.imgCourse.setImageResource(R.drawable.ui_design_course_icon);
+        } else {
+            holder.imgCourse.setImageResource(R.drawable.nataedu_icon);
         }
 
         holder.itemView.setOnClickListener(v -> listener.onItemClick(course));
@@ -51,11 +61,13 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     }
 
     public static class CourseViewHolder extends RecyclerView.ViewHolder {
+        TextView tvCourseName, tvAuthor;
         ImageView imgCourse;
 
         public CourseViewHolder(@NonNull View itemView) {
             super(itemView);
             tvCourseName = itemView.findViewById(R.id.tvCourseName);
+            tvAuthor = itemView.findViewById(R.id.tvAuthor);
             imgCourse = itemView.findViewById(R.id.imgCourse);
         }
     }
