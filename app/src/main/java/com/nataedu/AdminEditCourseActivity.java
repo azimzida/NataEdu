@@ -15,7 +15,6 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
@@ -29,14 +28,15 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class AdminAddCourseActivity extends AppCompatActivity {
+public class AdminEditCourseActivity extends AppCompatActivity {
 
     private EditText etCourseName, etDescription, etPrice, etAuthor;
     private TextView tvSelectedFileName;
     private Spinner spKategori;
-    private Button btnSaveCourse, btnPickPdf;
+    private Button btnUpdateCourse, btnPickPdf;
     private FirebaseFirestore db;
-    
+
+    private String courseId, existingPdfUrl;
     private Uri selectedPdfUri;
     private String selectedFileName;
 
@@ -54,7 +54,7 @@ public class AdminAddCourseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_add_course);
+        setContentView(R.layout.admin_edit_course);
 
         db = FirebaseFirestore.getInstance();
 
@@ -64,19 +64,56 @@ public class AdminAddCourseActivity extends AppCompatActivity {
         etAuthor = findViewById(R.id.etAuthor);
         tvSelectedFileName = findViewById(R.id.tvSelectedFileName);
         spKategori = findViewById(R.id.spKategori);
-        btnSaveCourse = findViewById(R.id.btnSaveCourse);
+        btnUpdateCourse = findViewById(R.id.btnUpdateCourse);
         btnPickPdf = findViewById(R.id.btnPickPdf);
         ImageView btnBack = findViewById(R.id.btnBack);
 
-        loadCategoriesFromFirestore();
+        // Ambil data dari Intent
+        courseId = getIntent().getStringExtra("COURSE_ID");
+        String name = getIntent().getStringExtra("COURSE_NAME");
+        String author = getIntent().getStringExtra("COURSE_AUTHOR");
+        String desc = getIntent().getStringExtra("COURSE_DESC");
+        String price = getIntent().getStringExtra("COURSE_PRICE");
+        String category = getIntent().getStringExtra("COURSE_CATEGORY");
+        existingPdfUrl = getIntent().getStringExtra("COURSE_PDF");
+
+        // Set data ke View
+        etCourseName.setText(name);
+        etAuthor.setText(author);
+        etDescription.setText(desc);
+        etPrice.setText(price);
+
+        loadCategoriesFromFirestore(category);
 
         if (btnBack != null) {
             btnBack.setOnClickListener(v -> finish());
         }
 
         btnPickPdf.setOnClickListener(v -> pickPdfFile());
+        btnUpdateCourse.setOnClickListener(v -> updateCourse());
+    }
 
-        btnSaveCourse.setOnClickListener(v -> saveCourseToFirestore());
+    private void loadCategoriesFromFirestore(String selectedCategory) {
+        db.collection("categories").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult() != null) {
+                java.util.List<String> categories = new java.util.ArrayList<>();
+                for (com.google.firebase.firestore.QueryDocumentSnapshot doc : task.getResult()) {
+                    String catName = doc.getString("name");
+                    if (catName != null) categories.add(catName);
+                }
+                if (categories.isEmpty()) categories.add("Coding");
+                
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spKategori.setAdapter(adapter);
+
+                // Pilih kategori yang sesuai
+                if (selectedCategory != null) {
+                    int pos = categories.indexOf(selectedCategory);
+                    if (pos != -1) spKategori.setSelection(pos);
+                }
+            }
+        });
     }
 
     private void pickPdfFile() {
@@ -103,74 +140,60 @@ public class AdminAddCourseActivity extends AppCompatActivity {
         return result;
     }
 
-    private void loadCategoriesFromFirestore() {
-        db.collection("categories").get().addOnCompleteListener(task -> {
-            if (task.isSuccessful() && task.getResult() != null) {
-                java.util.List<String> categories = new java.util.ArrayList<>();
-                for (com.google.firebase.firestore.QueryDocumentSnapshot doc : task.getResult()) {
-                    String catName = doc.getString("name");
-                    if (catName != null) categories.add(catName);
-                }
-                if (categories.isEmpty()) categories.add("Coding");
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spKategori.setAdapter(adapter);
-            }
-        });
-    }
-
-    private void saveCourseToFirestore() {
+    private void updateCourse() {
         String name = etCourseName.getText().toString().trim();
         String desc = etDescription.getText().toString().trim();
         String author = etAuthor.getText().toString().trim();
         String price = etPrice.getText().toString().trim();
-        
-        if (spKategori.getSelectedItem() == null || name.isEmpty() || author.isEmpty() || selectedPdfUri == null) {
-            Toast.makeText(this, "Please fill required fields and select a PDF!", Toast.LENGTH_SHORT).show();
+        String category = spKategori.getSelectedItem() != null ? spKategori.getSelectedItem().toString() : "";
+
+        if (name.isEmpty() || author.isEmpty()) {
+            Toast.makeText(this, "Please fill required fields!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        String category = spKategori.getSelectedItem().toString();
-        btnSaveCourse.setEnabled(false);
-        btnSaveCourse.setText("Uploading PDF...");
+        btnUpdateCourse.setEnabled(false);
 
-        // Jalankan upload di background thread
-        new Thread(() -> {
-            String uploadedUrl = uploadToSupabase(selectedPdfUri, selectedFileName);
-            
-            runOnUiThread(() -> {
-                if (uploadedUrl != null) {
-                    saveFinalDataToFirestore(name, desc, author, price, category, uploadedUrl);
-                } else {
-                    btnSaveCourse.setEnabled(true);
-                    btnSaveCourse.setText("Save Course");
-                    // Show a more descriptive error if possible via a class variable or similar, 
-                    // but for now, let's just use a generic "check logs" toast
-                    Toast.makeText(this, "Upload Failed! Check Logcat (SUPABASE_UPLOAD)", Toast.LENGTH_LONG).show();
-                }
-            });
-        }).start();
+        if (selectedPdfUri != null) {
+            // Jika pilih file baru, upload dulu
+            btnUpdateCourse.setText("Uploading New PDF...");
+            new Thread(() -> {
+                String uploadedUrl = uploadToSupabase(selectedPdfUri, selectedFileName);
+                runOnUiThread(() -> {
+                    if (uploadedUrl != null) {
+                        saveUpdateToFirestore(name, desc, author, price, category, uploadedUrl);
+                    } else {
+                        btnUpdateCourse.setEnabled(true);
+                        btnUpdateCourse.setText("Update Course");
+                        Toast.makeText(this, "Upload Failed!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }).start();
+        } else {
+            // Jika tidak pilih file baru, gunakan URL lama
+            saveUpdateToFirestore(name, desc, author, price, category, existingPdfUrl);
+        }
     }
 
-    private void saveFinalDataToFirestore(String name, String desc, String author, String price, String category, String url) {
-        Map<String, Object> course = new HashMap<>();
-        course.put("nama_course", name);
-        course.put("deskripsi", desc);
-        course.put("author", author);
-        course.put("price", price);
-        course.put("kategori", category);
-        course.put("pdf_url", url);
-        course.put("created_at", Timestamp.now());
+    private void saveUpdateToFirestore(String name, String desc, String author, String price, String category, String url) {
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("nama_course", name);
+        updates.put("deskripsi", desc);
+        updates.put("author", author);
+        updates.put("price", price);
+        updates.put("kategori", category);
+        updates.put("pdf_url", url);
 
-        db.collection("courses").add(course)
-                .addOnSuccessListener(doc -> {
-                    Toast.makeText(this, "Course Added Successfully!", Toast.LENGTH_SHORT).show();
+        db.collection("courses").document(courseId)
+                .update(updates)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(this, "Course Updated Successfully!", Toast.LENGTH_SHORT).show();
                     finish();
                 })
                 .addOnFailureListener(e -> {
-                    btnSaveCourse.setEnabled(true);
-                    btnSaveCourse.setText("Save Course");
-                    Toast.makeText(this, "Firestore Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    btnUpdateCourse.setEnabled(true);
+                    btnUpdateCourse.setText("Update Course");
+                    Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 
@@ -178,22 +201,18 @@ public class AdminAddCourseActivity extends AppCompatActivity {
         try {
             InputStream inputStream = getContentResolver().openInputStream(uri);
             byte[] fileData = readAllBytes(inputStream);
-            
             OkHttpClient client = new OkHttpClient();
-            
+
             // Tambahkan timestamp agar nama file unik dan tidak error 409 Duplicate
             String uniqueFileName = System.currentTimeMillis() + "_" + fileName;
-            
-            // Format URL: [SUPABASE_URL]/storage/v1/object/[BUCKET_NAME]/[FILE_NAME]
+
             String uploadUrl = SupabaseConfig.SUPABASE_URL + "/storage/v1/object/" + SupabaseConfig.BUCKET_NAME + "/" + uniqueFileName;
             
             RequestBody requestBody = RequestBody.create(fileData, MediaType.parse("application/pdf"));
-            
             Request request = new Request.Builder()
                     .url(uploadUrl)
                     .addHeader("apikey", SupabaseConfig.SUPABASE_KEY)
                     .addHeader("Authorization", "Bearer " + SupabaseConfig.SUPABASE_KEY)
-                    .addHeader("Content-Type", "application/pdf")
                     .post(requestBody)
                     .build();
 
@@ -204,7 +223,6 @@ public class AdminAddCourseActivity extends AppCompatActivity {
                     return SupabaseConfig.SUPABASE_URL + "/storage/v1/object/public/" + SupabaseConfig.BUCKET_NAME + "/" + uniqueFileName;
                 } else {
                     Log.e("SUPABASE_UPLOAD", "Error Code: " + response.code());
-                    Log.e("SUPABASE_UPLOAD", "Error Message: " + response.message());
                     Log.e("SUPABASE_UPLOAD", "Response Body: " + responseBody);
                 }
             }

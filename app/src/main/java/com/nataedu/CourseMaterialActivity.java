@@ -64,5 +64,23 @@ public class CourseMaterialActivity extends AppCompatActivity {
                 startActivity(intent);
             });
         }
+
+        // --- FIX CRASH: Simpan History dengan ID yang Aman ---
+        String userId = com.google.firebase.auth.FirebaseAuth.getInstance().getUid();
+        if (userId != null && courseName != null) {
+            java.util.Map<String, Object> historyData = new java.util.HashMap<>();
+            historyData.put("title", courseName);
+            historyData.put("author", author);
+            historyData.put("timestamp", com.google.firebase.firestore.FieldValue.serverTimestamp());
+
+            // Ganti "/" dengan "-" agar Firestore tidak menganggapnya sebagai sub-koleksi (Penyebab Crash)
+            String safeDocId = courseName.replace("/", "-");
+
+            com.google.firebase.firestore.FirebaseFirestore.getInstance()
+                    .collection("users").document(userId)
+                    .collection("history").document(safeDocId)
+                    .set(historyData)
+                    .addOnFailureListener(e -> android.util.Log.e("HISTORY_ERR", e.getMessage()));
+        }
     }
 }

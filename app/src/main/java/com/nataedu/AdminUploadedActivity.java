@@ -41,8 +41,15 @@ public class AdminUploadedActivity extends AppCompatActivity {
         adapter = new AdminMaterialAdapter(filteredList, new AdminMaterialAdapter.OnMaterialActionListener() {
             @Override
             public void onEdit(Course course) {
-                // Implementasi Edit (bisa dikembangkan nanti)
-                Toast.makeText(AdminUploadedActivity.this, "Edit: " + course.getNama_course(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(AdminUploadedActivity.this, AdminEditCourseActivity.class);
+                intent.putExtra("COURSE_ID", course.getId());
+                intent.putExtra("COURSE_NAME", course.getNama_course());
+                intent.putExtra("COURSE_AUTHOR", course.getAuthor());
+                intent.putExtra("COURSE_DESC", course.getDeskripsi());
+                intent.putExtra("COURSE_PRICE", course.getPrice());
+                intent.putExtra("COURSE_CATEGORY", course.getKategori());
+                intent.putExtra("COURSE_PDF", course.getPdf_url());
+                startActivity(intent);
             }
 
             @Override
@@ -76,6 +83,12 @@ public class AdminUploadedActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {}
         });
 
+        fetchMaterials();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         fetchMaterials();
     }
 

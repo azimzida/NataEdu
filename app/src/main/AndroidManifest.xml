@@ -85,6 +85,10 @@
             android:exported="false" />
         <activity android:name=".AdminAddCourseActivity"
             android:exported="false" />
+        <activity android:name=".AdminEditCourseActivity"
+            android:exported="false" />
+        <activity android:name=".ProfileActivity"
+            android:exported="false" />
         <activity android:name=".AdminCourseActivity"
             android:exported="false"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
@@ -96,6 +100,8 @@
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity android:name=".DetailModulActivity"
             android:exported="false" />
+        <activity android:name=".HistoryActivity" android:exported="false" />
+
 
     </application>
 

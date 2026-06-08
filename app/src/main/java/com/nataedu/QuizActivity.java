@@ -45,16 +45,26 @@ public class QuizActivity extends AppCompatActivity {
         btnBackToClass = findViewById(R.id.btnBackToClass);
         btnFinishQuiz = findViewById(R.id.btnFinishQuiz);
 
+        // 1. Ambil data dari Intent
         courseName = getIntent().getStringExtra("COURSE_NAME");
         author = getIntent().getStringExtra("AUTHOR");
 
-        if (courseName != null) tvCourseTitle.setText(courseName);
-        if (author != null) tvAuthorName.setText("by " + author);
+        // DEBUG: Pastikan data masuk
+        if (courseName == null) {
+            Toast.makeText(this, "Course name is missing!", Toast.LENGTH_SHORT).show();
+            Log.e("QUIZ_DEBUG", "COURSE_NAME extra is NULL");
+        }
 
+        // 2. Tampilkan Header
+        if (courseName != null && tvCourseTitle != null) tvCourseTitle.setText(courseName);
+        if (author != null && tvAuthorName != null) tvAuthorName.setText("by " + author);
+
+        // 3. Set Image Berdasarkan Nama Course
         if (courseName != null && imgCourse != null) {
-            if (courseName.toLowerCase().contains("ui/ux") || courseName.toLowerCase().contains("ui design")) {
+            String nameLower = courseName.toLowerCase();
+            if (nameLower.contains("ui/ux") || nameLower.contains("ui design")) {
                 imgCourse.setImageResource(R.drawable.ui_design_course_icon);
-            } else if (courseName.toLowerCase().contains("javascript")) {
+            } else if (nameLower.contains("javascript")) {
                 imgCourse.setImageResource(R.drawable.javascript_logo);
             } else {
                 imgCourse.setImageResource(R.drawable.nataedu_icon);
@@ -70,6 +80,9 @@ public class QuizActivity extends AppCompatActivity {
     private void loadQuizzesByCourse() {
         if (courseName == null) return;
 
+        // Tampilkan loading toast
+        Toast.makeText(this, "Loading quizzes...", Toast.LENGTH_SHORT).show();
+
         db.collection("quizzes")
                 .whereEqualTo("target_course", courseName)
                 .get()
@@ -82,9 +95,15 @@ public class QuizActivity extends AppCompatActivity {
                             quizList.add(question);
                             addQuestionToUI(question);
                         }
+                        
+                        if (quizList.isEmpty()) {
+                            Toast.makeText(this, "No quiz found for " + courseName, Toast.LENGTH_LONG).show();
+                            Log.d("QUIZ_DEBUG", "Zero questions found for: " + courseName);
+                        }
                     } else {
-                        String error = task.getException() != null ? task.getException().getMessage() : "Unknown Error";
-                        Toast.makeText(this, "Failed: " + error, Toast.LENGTH_LONG).show();
+                        String error = task.getException() != null ? task.getException().getMessage() : "Unknown Firestore Error";
+                        Toast.makeText(this, "Error: " + error, Toast.LENGTH_LONG).show();
+                        Log.e("QUIZ_DEBUG", "Firestore error: " + error);
                     }
                 });
     }
@@ -126,6 +145,8 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void finishQuiz() {
+        if (quizList.isEmpty()) return;
+
         ArrayList<String> questions = new ArrayList<>();
         ArrayList<String> userAnswers = new ArrayList<>();
         ArrayList<String> correctAnswersText = new ArrayList<>();
@@ -143,10 +164,11 @@ public class QuizActivity extends AppCompatActivity {
             }
 
             String cAnsText = "";
-            if (q.getCorrect_answer().equals("A")) cAnsText = q.getOption_a();
-            else if (q.getCorrect_answer().equals("B")) cAnsText = q.getOption_b();
-            else if (q.getCorrect_answer().equals("C")) cAnsText = q.getOption_c();
-            else if (q.getCorrect_answer().equals("D")) cAnsText = q.getOption_d();
+            String correctKey = q.getCorrect_answer();
+            if (correctKey.equalsIgnoreCase("A")) cAnsText = q.getOption_a();
+            else if (correctKey.equalsIgnoreCase("B")) cAnsText = q.getOption_b();
+            else if (correctKey.equalsIgnoreCase("C")) cAnsText = q.getOption_c();
+            else if (correctKey.equalsIgnoreCase("D")) cAnsText = q.getOption_d();
 
             questions.add(q.getQuestion());
             userAnswers.add(uAns);

@@ -2,6 +2,7 @@ package com.nataedu;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -103,6 +104,11 @@ public class LoginActivity extends AppCompatActivity {
 
                             // CEK ROLE USER UNTUK REDIRECTION
                             String role = task.getResult().getString("role");
+                            if (role != null) role = role.trim();
+
+                            Log.d("LOGIN_DEBUG", "User UID: " + user.getUid());
+                            Log.d("LOGIN_DEBUG", "Retrieved Role: [" + role + "]");
+
                             if ("admin".equalsIgnoreCase(role)) {
                                 Toast.makeText(LoginActivity.this, "Selamat Datang, Admin!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, AdminActivity.class);

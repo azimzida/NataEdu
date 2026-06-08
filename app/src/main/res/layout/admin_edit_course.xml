@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Add New Course"
+            android:text="Edit Course"
             android:textColor="#852E4E"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -136,7 +136,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Upload PDF Course"
+                android:text="Update PDF Course (Optional)"
                 android:textColor="#4C1D3D"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -152,7 +152,7 @@
                     android:id="@+id/btnPickPdf"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:text="Choose File"
+                    android:text="Change File"
                     android:background="@drawable/bg_input"
                     android:textAllCaps="false"
                     android:paddingHorizontal="16dp" />
@@ -163,7 +163,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="12dp"
                     android:gravity="center_vertical"
-                    android:text="No file selected"
+                    android:text="Keep existing file"
                     android:textColor="#999999"
                     android:textSize="14sp"
                     android:maxLines="1"
@@ -171,10 +171,10 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btnSaveCourse"
+                android:id="@+id/btnUpdateCourse"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:text="Save Course"
+                android:text="Update Course"
                 android:backgroundTint="#852E4E"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"

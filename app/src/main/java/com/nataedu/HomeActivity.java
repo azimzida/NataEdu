@@ -9,22 +9,35 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.activity.EdgeToEdge;
+
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class HomeActivity extends AppCompatActivity {
+
+    private TextView tvSeeAllHistory;
+    private TextView tvUserName;
+    private ImageView profileImage;
+    private FirebaseFirestore db;
+    private String userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.home_page);
 
-        TextView tvUserName = findViewById(R.id.tvUserName);
-        ImageView profileImage = findViewById(R.id.profileImage);
-        
+        tvSeeAllHistory = findViewById(R.id.tvSeeAllHistory);
+        tvUserName = findViewById(R.id.tvUserName);
+        profileImage = findViewById(R.id.profileImage);
+        db = FirebaseFirestore.getInstance();
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null && user.getEmail() != null) {
-            tvUserName.setText(user.getEmail().split("@")[0]);
+        if (user != null) {
+            userId = user.getUid();
+            loadUserData();
         }
 
         LinearLayout navHome = findViewById(R.id.navHome);
@@ -32,7 +45,7 @@ public class HomeActivity extends AppCompatActivity {
         LinearLayout navMentor = findViewById(R.id.navMentor);
 
         navHome.setOnClickListener(v -> {
-            // udah di home
+            // Sudah di home
         });
 
         navCourse.setOnClickListener(v -> {
@@ -47,10 +60,51 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // --- LOGIKA LOGOUT (KLIK FOTO PROFIL DI KANAN ATAS) ---
+        findViewById(R.id.tvSeeAllHistory).setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, HistoryActivity.class);
+            startActivity(intent);
+        });
+
+        // --- NAVIGASI KE PROFILE ---
         if (profileImage != null) {
-            profileImage.setOnClickListener(v -> showLogoutDialog());
+            profileImage.setOnClickListener(v -> {
+                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            });
         }
+
+
+    }
+
+    // Update data setiap kali user kembali ke halaman ini
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (userId != null) {
+            loadUserData();
+        }
+    }
+
+    private void loadUserData() {
+        db.collection("users").document(userId).get()
+                .addOnSuccessListener(doc -> {
+                    if (doc.exists()) {
+                        String username = doc.getString("username");
+                        String avatarUrl = doc.getString("avatar_url");
+
+                        if (username != null && !username.isEmpty()) {
+                            tvUserName.setText(username);
+                        }
+
+                        if (avatarUrl != null && !avatarUrl.isEmpty()) {
+                            Glide.with(this)
+                                    .load(avatarUrl)
+                                    .placeholder(R.drawable.fotoprofil) // Gambar default saat loading
+                                    .circleCrop() // Agar foto bulat
+                                    .into(profileImage);
+                        }
+                    }
+                });
     }
 
     private void showLogoutDialog() {
@@ -68,4 +122,5 @@ public class HomeActivity extends AppCompatActivity {
                 .setNegativeButton("Cancel", null)
                 .show();
     }
+
 }

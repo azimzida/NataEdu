@@ -60,11 +60,15 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
+                    android:background="#00000000"
+                    android:outlineProvider="background"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:shapeAppearanceOverlay="@style/ShapeAppearance.MaterialComponents.SmallComponent"
+                    app:shapeAppearanceOverlay="@style/CircleImage"
+                    app:strokeColor="#FFFFFF"
                     app:strokeWidth="1dp" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -202,11 +206,15 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tvSeeAllHistory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="See All"
                     android:textColor="#5D3E3E"
                     android:textSize="14sp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
                     app:layout_constraintBottom_toBottomOf="@id/historyLabel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/historyLabel" />

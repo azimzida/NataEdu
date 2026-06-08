@@ -81,6 +81,11 @@ public class AdminAddQuizActivity extends AppCompatActivity {
             return;
         }
 
+        if (!correct.matches("[A-D]")) {
+            Toast.makeText(this, "Correct answer must be A, B, C, or D", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Map<String, Object> quiz = new HashMap<>();
         quiz.put("target_course", targetCourse); // KUNCI UTAMA SINKRONISASI
         quiz.put("question", question);
@@ -94,8 +99,18 @@ public class AdminAddQuizActivity extends AppCompatActivity {
         db.collection("quizzes").add(quiz)
                 .addOnSuccessListener(documentReference -> {
                     Toast.makeText(this, "Quiz Added to " + targetCourse, Toast.LENGTH_SHORT).show();
-                    finish();
+                    clearFields();
                 })
                 .addOnFailureListener(e -> Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show());
+    }
+
+    private void clearFields() {
+        etQuestion.setText("");
+        etOptionA.setText("");
+        etOptionB.setText("");
+        etOptionC.setText("");
+        etOptionD.setText("");
+        etCorrectAnswer.setText("");
+        etQuestion.requestFocus();
     }
 }
