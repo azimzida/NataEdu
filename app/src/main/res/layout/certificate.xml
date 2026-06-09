@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="24dp"
-        android:text="JavaScript Class"
+        android:text="Course Name"
         android:textColor="#4C1D3D"
         android:textSize="26sp"
         android:textStyle="bold" />
